@@ -9,13 +9,14 @@ public class PlayerMovement : MonoBehaviour
     private float movingDirection = 0f;
     public float jumpingSpeed = 8f;
     private bool jumping = false;
-    private bool facingRight = true;
-    private float fallMultiplier = 3.5f;
+    public static bool facingRight = true;
+    private readonly float fallMultiplier = 3.5f;
     private float lowJumpMultiplier = 3f;
     float xScale;
 
     //Collisions
-    List<Collider2D> groundTouched = new List<Collider2D>();
+    public static List<Collider2D> groundTouched = new List<Collider2D>();
+    ContactPoint2D[] points;
 
     private Rigidbody2D rb;
     private Transform transform;
@@ -30,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
 
         xScale = transform.localScale.x;
+        points = new ContactPoint2D[4]; //4 as an example
     }
 
     public void Update()
@@ -55,24 +57,27 @@ public class PlayerMovement : MonoBehaviour
         {
             movingDirection = 0f;
             animator.SetInteger("moving", 0);
+            if (groundTouched.Count != 0)
+            {
+                animator.SetBool("jumping", false);
+            }
+            
         }
         
         //*****************************
         // ***** Jumping Movement *****
         if (joystick.Vertical >= 0.5f && groundTouched.Count != 0)
         {
-            rb.AddForce(new Vector2(0, jumpingSpeed));
+            //rb.AddForce(new Vector2(0, jumpingSpeed));
             jumping = true;
+            animator.SetBool("jumping", true);
         }
-
-        
-       
     }
 
     public void FixedUpdate()
     {
         // ***** Horizontal Movement *****
-        rb.velocity = new Vector2(movingDirection * movementSpeed * Time.deltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(movingDirection * movementSpeed *  Time.deltaTime, rb.velocity.y);
 
         // ***** Horizontal Rotation *****
         if (facingRight)
@@ -86,30 +91,34 @@ public class PlayerMovement : MonoBehaviour
         if (jumping)
         {
             //rb.velocity += Vector2.up * jumpingSpeed;
-            rb.AddForce(Vector2.up * jumpingSpeed, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpingSpeed * Time.deltaTime, ForceMode2D.Impulse);
             jumping = false;
         }
         
         // This controls how the gravity affects our player to give a better jumping experience
+        // this also makes him fall and not been able to jump infinitely
         if(rb.velocity.y < 0)
             rb.gravityScale = fallMultiplier;
         else 
             if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
                 rb.gravityScale = lowJumpMultiplier;
             else
+            {
                 rb.gravityScale = 2f;
+                animator.SetBool("jumping", false);
+            }
+                
     }
 
     //Adds to a list all th colliders that are actually touching our character
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //We create an array to store all the collisions on our colliders
-        ContactPoint2D[] points = new ContactPoint2D[2]; //2 as an example
         collision.GetContacts(points);
-        for (int i = 0; i < points.Length; i++)
+        for (int i = 0; i < points.Length-1; i++)
         {
-            if (points[i].normal == Vector2.up && !groundTouched.Contains(collision.collider))
-            {
+            if (points[i].normal == Vector2.up && !groundTouched.Contains(collision.collider) || collision.collider.tag == "scenarioShapes")
+            {   
                 groundTouched.Add(collision.collider);
                 return;
             }
@@ -123,5 +132,5 @@ public class PlayerMovement : MonoBehaviour
         {
             groundTouched.Remove(collision.collider);
         }
-    }
+    }    
 }
