@@ -6,6 +6,9 @@ TagManager:
   tags:
   - scenarioShapes
   - Enemy
+  - Enviroment
+  - Sword
+  - AuxThings
   layers:
   - Default
   - TransparentFX

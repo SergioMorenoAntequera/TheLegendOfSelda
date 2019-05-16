@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Update()
     {
-        //********************************
+        // ********************************************************************************************
         // ***** Horizontal Movement *****
         if (joystick.Horizontal <= -0.2f) //LEFT
         {
@@ -63,8 +63,8 @@ public class PlayerMovement : MonoBehaviour
             }
             
         }
-        
-        //*****************************
+
+        // ********************************************************************************************
         // ***** Jumping Movement *****
         if (joystick.Vertical >= 0.5f && groundTouched.Count != 0)
         {
@@ -76,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void FixedUpdate()
     {
+        // ********************************************************************************************
         // ***** Horizontal Movement *****
         rb.velocity = new Vector2(movingDirection * movementSpeed *  Time.deltaTime, rb.velocity.y);
 
@@ -87,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
         transform.localScale = new Vector3(xScale, transform.localScale.y, transform.localScale.z);
 
+        // ********************************************************************************************
         // ***** Jumping *****
         if (jumping)
         {
@@ -97,17 +99,22 @@ public class PlayerMovement : MonoBehaviour
         
         // This controls how the gravity affects our player to give a better jumping experience
         // this also makes him fall and not been able to jump infinitely
-        if(rb.velocity.y < 0)
+        if(rb.velocity.y < -0.1f)
+        {
             rb.gravityScale = fallMultiplier;
-        else 
-            if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        }
+        else
+        {
+            if (rb.velocity.y > 0.1f && !Input.GetButton("Jump"))
+            {
                 rb.gravityScale = lowJumpMultiplier;
+            }
             else
             {
                 rb.gravityScale = 2f;
                 animator.SetBool("jumping", false);
             }
-                
+        }  
     }
 
     //Adds to a list all th colliders that are actually touching our character
