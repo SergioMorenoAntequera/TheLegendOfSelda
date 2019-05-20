@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    SpriteRenderer sp;
+    private SpriteRenderer sp;
+    private Transform transform;
 
     private float hp = 5;
     public float flickTimer = 0.5f;
@@ -17,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         sp = GetComponent<SpriteRenderer>();
+        transform = GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -27,14 +29,19 @@ public class PlayerHealth : MonoBehaviour
             if (flickC > 0)
             {
                 flickTimer -= 1 * Time.deltaTime;
-
-                if (flickTimer > 0.35f)
-                {
-                    sp.enabled = false;
-                }
-                else if(flickTimer < 0.35f && flickTimer > 0)
+                
+                if (flickTimer > 0.40f || flickTimer < 0.30f && flickTimer > 0.20f)
                 {
                     sp.enabled = true;
+                }
+                else if(flickTimer < 0.40f && flickTimer > 0.30f || flickTimer < 0.20f && flickTimer > 0.10f)
+                {
+                    sp.enabled = false;
+
+                    if (flickTimer < 0.20f && flickTimer > 0.10f)
+                    {
+                        PlayerMovement.canMove = true;
+                    }
                 }
                 else if(flickTimer < 0)
                 {
@@ -47,6 +54,7 @@ public class PlayerHealth : MonoBehaviour
             }
         } else
         {
+            PlayerMovement.canMove = true;
             sp.enabled = true;
         }
     }
@@ -59,12 +67,19 @@ public class PlayerHealth : MonoBehaviour
         {
             if(hp > 0)
             {
+                Debug.Log("Player Health.69");
                 reduceHealth();
 
                 flicking = true;
-                flickC = 4;
+                flickC = 3;
                 flickTimer = 0.5f;
-                gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-3000, 300));
+
+                PlayerMovement.canMove = false;
+
+                if (collision.collider.GetComponent<Transform>().localPosition.x > transform.localPosition.x)
+                    gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-400, 300));
+                else
+                    gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(400, 300));
             }
 
             if (hp == 0)

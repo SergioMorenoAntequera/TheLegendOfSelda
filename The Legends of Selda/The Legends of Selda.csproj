@@ -623,7 +623,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Character Art\Universal Pixel Hero (Warrior)\Scripts\Controller.cs" />
+    <Compile Include="Assets\gmVariables.cs" />
+    <Compile Include="Assets\Joystick Pack\Examples\JoystickPlayerExample.cs" />
+    <Compile Include="Assets\Joystick Pack\Examples\JoystickSetterExample.cs" />
+    <Compile Include="Assets\Joystick Pack\Scripts\Base\Joystick.cs" />
+    <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\DynamicJoystick.cs" />
+    <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FixedJoystick.cs" />
+    <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
+    <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
+    <Compile Include="Assets\Resources\Enemies\Enemy.cs" />
+    <Compile Include="Assets\Resources\Enemies\Slime\SlimeAttack.cs" />
+    <Compile Include="Assets\Resources\Enemies\Slime\SlimeBite.cs" />
+    <Compile Include="Assets\Resources\Enemies\Slime\SlimeMovement.cs" />
+    <Compile Include="Assets\Scripts\DealingDamage.cs" />
+    <Compile Include="Assets\Scripts\PlayerAttack.cs" />
+    <Compile Include="Assets\Scripts\PlayerDash.cs" />
+    <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
   </ItemGroup>
   <ItemGroup>

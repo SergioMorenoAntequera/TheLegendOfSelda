@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement and Jumping")]
     public float movementSpeed = 400f;
     private float movingDirection = 0f;
+    public static bool canMove = true;
     public float jumpingSpeed = 8f;
     private bool jumping = false;
     public static bool facingRight = true;
@@ -38,31 +39,37 @@ public class PlayerMovement : MonoBehaviour
     {
         // ********************************************************************************************
         // ***** Horizontal Movement *****
-        if (joystick.Horizontal <= -0.2f) //LEFT
+        if (canMove)
         {
-
-            movingDirection = -1f;
-            facingRight = false;
-            animator.SetInteger("moving", 1);
-        }
-
-        if (joystick.Horizontal >= 0.2f) //RIGHT
-        {
-            movingDirection = 1f;
-            facingRight = true;
-            animator.SetInteger("moving", 1);
-        }
-
-        if (joystick.Horizontal == 0)
-        {
-            movingDirection = 0f;
-            animator.SetInteger("moving", 0);
-            if (groundTouched.Count != 0)
+            if (joystick.Horizontal <= -0.2f) //LEFT
             {
-                animator.SetBool("jumping", false);
+                movingDirection = -1f;
+                facingRight = false;
+                animator.SetInteger("moving", 1);
             }
-            
+
+            if (joystick.Horizontal >= 0.2f) //RIGHT
+            {
+                movingDirection = 1f;
+                facingRight = true;
+                animator.SetInteger("moving", 1);
+            }
+
+            if (joystick.Horizontal == 0)
+            {
+                movingDirection = 0f;
+                animator.SetInteger("moving", 0);
+                if (groundTouched.Count != 0)
+                {
+                    animator.SetBool("jumping", false);
+                }
+            }
         }
+        else
+        {
+            animator.SetInteger("moving", 0);
+        }
+        
 
         // ********************************************************************************************
         // ***** Jumping Movement *****
@@ -78,7 +85,10 @@ public class PlayerMovement : MonoBehaviour
     {
         // ********************************************************************************************
         // ***** Horizontal Movement *****
-        rb.velocity = new Vector2(movingDirection * movementSpeed *  Time.deltaTime, rb.velocity.y);
+        if (canMove)
+        {
+            rb.velocity = new Vector2(movingDirection * movementSpeed *  Time.deltaTime, rb.velocity.y);
+        }
 
         // ***** Horizontal Rotation *****
         if (facingRight)
@@ -139,5 +149,7 @@ public class PlayerMovement : MonoBehaviour
         {
             groundTouched.Remove(collision.collider);
         }
-    }    
+    }
+
+    
 }

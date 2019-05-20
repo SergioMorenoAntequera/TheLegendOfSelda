@@ -7,6 +7,7 @@ public class DealingDamage : MonoBehaviour
     //This script detects if we hit an enemy
     //and saves his name to let them interact??
 
+    Transform playerTransform;
     public static GameObject enemy;
     public static string enemyName = "";
     private float startAuxTimer = 0.1f;
@@ -14,12 +15,13 @@ public class DealingDamage : MonoBehaviour
 
     private void Start()
     {
+        playerTransform = gameObject.GetComponent<Transform>().parent.gameObject.GetComponent<Transform>();
         auxTimer = startAuxTimer;
     }
 
     private void Update()
     {
-        if (auxTimer > 0){
+        if (auxTimer > 0) {
             auxTimer -= 1 * Time.deltaTime;
         } else {
             enemyName = "";
@@ -28,16 +30,12 @@ public class DealingDamage : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //Here we can diferenciate between the diferent things
-
+        //Here we can diferenciate between the diferent 
         if (other.tag == "Enemy")
         {
             enemyName = other.name;
-            other.GetComponent<Rigidbody2D>().AddForce(new Vector2(200, 200));
             enemy = GameObject.Find(enemyName);
             auxTimer = startAuxTimer;
         }
-        
-        Debug.Log("DealingDamage.41.He golpeado: " + enemyName);
     }
 }
