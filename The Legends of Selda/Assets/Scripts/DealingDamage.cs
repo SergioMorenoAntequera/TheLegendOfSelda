@@ -30,7 +30,7 @@ public class DealingDamage : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //Here we can diferenciate between the diferent 
+        //Here we can diferenciate between the diferent enemies
         if (other.tag == "Enemy")
         {
             enemyName = other.name;

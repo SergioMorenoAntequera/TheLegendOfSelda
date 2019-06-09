@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id" xmlns:tools="http://schemas.android.com/tools">
+  <string name="firebase_database_url" translatable="false">https://laleyendadeselda-8206f.firebaseio.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">319217246573</string>
+  <string name="google_storage_bucket" translatable="false">laleyendadeselda-8206f.appspot.com</string>
+  <string name="project_id" translatable="false">laleyendadeselda-8206f</string>
+  <string name="google_api_key" translatable="false">AIzaSyBo_9oATqEJ99eC77bFO7XF5XZHBR2scrY</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBo_9oATqEJ99eC77bFO7XF5XZHBR2scrY</string>
+  <string name="google_app_id" translatable="false">1:319217246573:android:d51f3b6809ab313a</string>
+  <string name="default_web_client_id" translatable="false">319217246573-j50nl6ed15bv1f9oiobin6rku40v6mmj.apps.googleusercontent.com</string>
+</resources>

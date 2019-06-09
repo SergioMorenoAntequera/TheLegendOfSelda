@@ -14,9 +14,12 @@ public class PlayerMovement : MonoBehaviour
     private readonly float fallMultiplier = 3.5f;
     private float lowJumpMultiplier = 3f;
     float xScale;
+    public static int score;
+
+    public float gravity;
 
     //Collisions
-    public static List<Collider2D> groundTouched = new List<Collider2D>();
+    public static List<Collider2D> groundTouched;
     ContactPoint2D[] points;
 
     private Rigidbody2D rb;
@@ -25,8 +28,10 @@ public class PlayerMovement : MonoBehaviour
 
     public Joystick joystick;
 
-    public void Awake()
+    public void Start()
     {
+        groundTouched = new List<Collider2D>();
+
         rb = gameObject.GetComponent<Rigidbody2D>();
         transform = gameObject.GetComponent<Transform>();
         animator = gameObject.GetComponent<Animator>();
@@ -55,12 +60,12 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetInteger("moving", 1);
             }
 
-            if (joystick.Horizontal == 0)
+            if (joystick.Horizontal <= 0.2f && joystick.Horizontal >= -0.2f)
             {
                 movingDirection = 0f;
                 animator.SetInteger("moving", 0);
                 if (groundTouched.Count != 0)
-                {
+                { 
                     animator.SetBool("jumping", false);
                 }
             }
@@ -69,7 +74,8 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetInteger("moving", 0);
         }
-        
+
+        gravity = rb.gravityScale;
 
         // ********************************************************************************************
         // ***** Jumping Movement *****
@@ -124,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.gravityScale = 2f;
                 animator.SetBool("jumping", false);
             }
-        }  
+        }
     }
 
     //Adds to a list all th colliders that are actually touching our character
@@ -137,6 +143,7 @@ public class PlayerMovement : MonoBehaviour
             if (points[i].normal == Vector2.up && !groundTouched.Contains(collision.collider) || collision.collider.tag == "scenarioShapes")
             {   
                 groundTouched.Add(collision.collider);
+                animator.SetBool("jumping", jumping);
                 return;
             }
         }

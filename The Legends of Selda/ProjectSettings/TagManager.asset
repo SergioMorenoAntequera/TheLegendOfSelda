@@ -9,6 +9,7 @@ TagManager:
   - Enviroment
   - Sword
   - AuxThings
+  - Walls
   layers:
   - Default
   - TransparentFX

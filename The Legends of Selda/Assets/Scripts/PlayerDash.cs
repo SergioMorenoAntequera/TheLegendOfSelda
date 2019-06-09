@@ -8,15 +8,18 @@ public class PlayerDash : MonoBehaviour
     public Animator animator;
 
     [Header("Dashing properties")]
-    public float dashSpeed = 3f;
-    public float dashTime = 0f;
-    public float startDashTime = 3f;
-    private bool dashing = false;
+    private float dashSpeed = 700f;
+    private float dashTime = 0f;
+    private float startDashTime = .3f;
+
     private bool canDash = true;
+    public bool dashing = false;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        startDashTime = .3f;
         dashTime = startDashTime;
     }
 

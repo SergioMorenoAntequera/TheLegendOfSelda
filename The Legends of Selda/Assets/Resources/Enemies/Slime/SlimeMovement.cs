@@ -13,7 +13,6 @@ public class SlimeMovement : MonoBehaviour
     private bool canMove = true;
     private bool facingRight = false;
     private Vector3 localScale;
-    private float repeleTimer = 0;
     private int hp;
     private int timesAttacked = 0;
     
@@ -31,11 +30,6 @@ public class SlimeMovement : MonoBehaviour
     void Update()
     {
         animator.SetBool("moving", canMove);
-
-        /*if (repeleTimer > 0)
-        {
-            repeleTimer -= 1 * Time.deltaTime;
-        }*/
     }
 
     private void FixedUpdate()
@@ -68,16 +62,21 @@ public class SlimeMovement : MonoBehaviour
                 canMove = false;
                 rb.velocity = new Vector2(0, 0);
                 //Here we also call the destroy Method but in the animator.
-
             }
             else
             {
-                Debug.Log("Vida del slime: " + hp);
                 repele(facingRight, rb);
                 canMove = false;
                 animator.SetBool("hurted", true);
             }
         }
+        
+        if (collider.tag == "Walls" || collider.tag == "Enemy")
+        {
+            enemyMovementSpeed *= -1;
+            facingRight = !facingRight;
+        }   
+
     }
 
     // ******************************************************************************************************
@@ -85,15 +84,10 @@ public class SlimeMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.name == "Walls" || collision.collider.tag == "Enemy")
+        if (collision.collider.tag == "Walls" || collision.collider.tag == "Enemy")
         {
             enemyMovementSpeed *= -1;
             facingRight = !facingRight;
-        }
-
-        if(collision.collider.tag == "Player")
-        {
-            canMove = false;
         }
 
         animator.SetBool("hurted", false);
@@ -122,6 +116,7 @@ public class SlimeMovement : MonoBehaviour
 
     private void destroy()
     {
+        PlayerMovement.score++;
         Destroy(gameObject);
     }
 
@@ -135,5 +130,4 @@ public class SlimeMovement : MonoBehaviour
     {
         canMove = true;
     }
-    
 }

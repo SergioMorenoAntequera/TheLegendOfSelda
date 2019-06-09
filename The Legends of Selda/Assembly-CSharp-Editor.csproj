@@ -64,6 +64,12 @@
     <Compile Include="Assets\Joystick Pack\Scripts\Editor\FloatingJoystickEditor.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Editor\JoystickEditor.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Editor\VariableJoystickEditor.cs" />
+    <None Include="Assets\Firebase\Editor\AppDependencies.xml" />
+    <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver_v1.2.109.0.txt" />
+    <None Include="Assets\Firebase\Editor\FirebaseDatabase_version-6.0.0_manifest.txt" />
+    <None Include="Assets\Firebase\Editor\FirebaseAuth_v1.1.2_manifest.txt" />
+    <None Include="Assets\Firebase\Editor\AuthDependencies.xml" />
+    <None Include="Assets\Firebase\Editor\DatabaseDependencies.xml" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/DAM2-Final-Project/The Legends of Selda/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -315,6 +321,48 @@
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Editor">
+      <HintPath>C:/DAM2-Final-Project/The Legends of Selda/Assets/Firebase/Editor/Firebase.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.App">
+      <HintPath>C:/DAM2-Final-Project/The Legends of Selda/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Auth">
+      <HintPath>C:/DAM2-Final-Project/The Legends of Selda/Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Platform">
+      <HintPath>C:/DAM2-Final-Project/The Legends of Selda/Assets/Firebase/Plugins/Firebase.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.TaskExtension">
+      <HintPath>C:/DAM2-Final-Project/The Legends of Selda/Assets/Firebase/Plugins/Firebase.TaskExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.MiniJson">
+      <HintPath>C:/DAM2-Final-Project/The Legends of Selda/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Sharpen">
+      <HintPath>C:/DAM2-Final-Project/The Legends of Selda/Assets/Firebase/Plugins/Google.Sharpen.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Database">
+      <HintPath>C:/DAM2-Final-Project/The Legends of Selda/Assets/Firebase/Plugins/Mono/Firebase.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Compat">
+      <HintPath>C:/DAM2-Final-Project/The Legends of Selda/Assets/Parse/Plugins/dotNet45/Unity.Compat.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Tasks">
+      <HintPath>C:/DAM2-Final-Project/The Legends of Selda/Assets/Parse/Plugins/dotNet45/Unity.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.IOSResolver_v1.2.109.0">
+      <HintPath>C:/DAM2-Final-Project/The Legends of Selda/Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.109.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.JarResolver_v1.2.109.0">
+      <HintPath>C:/DAM2-Final-Project/The Legends of Selda/Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.109.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.VersionHandler">
+      <HintPath>C:/DAM2-Final-Project/The Legends of Selda/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.VersionHandlerImpl_v1.2.109.0">
+      <HintPath>C:/DAM2-Final-Project/The Legends of Selda/Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.109.0.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>C:/DAM2-Final-Project/The Legends of Selda/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>

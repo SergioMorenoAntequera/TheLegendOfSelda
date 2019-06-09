@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "319217246573",
+    "firebase_url": "https://laleyendadeselda-8206f.firebaseio.com",
+    "project_id": "laleyendadeselda-8206f",
+    "storage_bucket": "laleyendadeselda-8206f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319217246573:android:d51f3b6809ab313a",
+        "android_client_info": {
+          "package_name": "com.SergioMoreno.TheLegendOfSelda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "319217246573-j50nl6ed15bv1f9oiobin6rku40v6mmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBo_9oATqEJ99eC77bFO7XF5XZHBR2scrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "319217246573-j50nl6ed15bv1f9oiobin6rku40v6mmj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
